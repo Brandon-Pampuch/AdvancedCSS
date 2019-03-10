@@ -1,0 +1,45 @@
+@import "abstracts/functions";
+@import "abstracts/mixins";
+@import "abstracts/variables";
+
+@import "base/base";
+@import "base/animations";
+@import "base/typography";
+@import "base/utilities";
+
+@import "components/button";
+@import "components/composition";
+
+@import "layout/header";
+@import "layout/grid";
+
+@import "pages/home";
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+
+hot keys:
+
+select multiple units: cmd + d
+options click to drop multiple cursors
+
+theory lectures:
+
+how are units converted from relative to absolute (px):
+FONTS: if child font-size is set to 150% parent element is 16px (default font size) then child will be 24px.
+LENGTH: if child is set to 10% padding and parent is width of 1000px then padding will be 100px
+EM Font: if child is 3em and parent element is 24px then the child will be 72px through inheritence.
+EN Lengths: in lenvgths em doesn't look at the parent, but the CURRENT ELEMENT. If current element is 24px then 2 em will be 48px.
+REM: always uses the root for both length and font sizes. So whatever the root font size is rem will multiply by 10, if root is 16px and rem is 10 then you have 160px
+VH: 1vh is 1% of viewport height so 90vh is 90% of viewport height. browswer knows this. good for hero sections.
+VW: 1vw is 1% of viewport width so 90vh is 90% of viewport width. browser knows this. good for hero sections.
+
+(line height will be deterimined )  margin padding not inherited, font-size, line-height are inherited if not set to a value.  Always set to computed values.
+inheritence and initial are keywords to change inheritence
+*/
+
+

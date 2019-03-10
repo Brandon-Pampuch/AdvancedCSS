@@ -1,0 +1,38 @@
+.header {
+    height: 95vh;
+    background-image: linear-gradient(
+        to right,
+        rgba($color-primary-light, 0.8),
+        rgba($color-primary-dark, 0.8)
+      ),
+      url(../img/hero.jpg);
+    /* first image is on top, can go in any direction for ex. right, bottom, opacity to see through*/
+    background-size: cover;
+    /* covers width of viewport */
+    background-position: top;
+    /* as the viewport changes the image will stick to the top.  Can also be set to bottom and center. */
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+    /* will tell you different shapes https://bennettfeely.com/clippy/ */
+    position: relative;
+    /* parent element set to relative will position the element. */
+  
+    &__logo-box {
+      position: absolute;
+      top: 4rem;
+      left: 4rem;
+    }
+    &__logo {
+      height: 3.5rem;
+    }
+    &__text-box {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      /* using transform elements are no longer in position absolute and you can adjust elements back to their center */
+      text-align: center;
+      /* we use this to align button below that is inline block (because inline-block can be manipulated like inline elements).  Could postion absolute and transform but it is over kill.  
+           */
+    }
+  }
+  

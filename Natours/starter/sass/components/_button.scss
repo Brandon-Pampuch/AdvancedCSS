@@ -1,0 +1,96 @@
+.btn {
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    /* this sets top and botteom and then left and right */
+    display: inline-block;
+    /* since anchor is an inlince text element in order to add padding or margine we need to make it inline-block */
+    border-radius: 20rem;
+    transition: all, 0.2s;
+    /* allows us to change the time on all child transform elements, must be on the INTITAL STATE.  This could also be broken into different params like animation */
+    position: relative;
+    /* for the after sudo class on the button
+      animation: moveInBottom .4s ease-in; */
+    /* possible solution but very impractical because it will apply this animation to all buttons */
+    font-size: $default-font-size;
+  }
+  &:hover {
+    transform: translateY(-0.3rem);
+    /* negative will move an element up */
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+    /* x,y,blur, suttle shadow with black and 20 percent opacity */
+
+    &::after {
+      /* only after when on hover state */
+      /* transform: scale(1.5); */
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+      /* creates the fade effect */
+    }
+  }
+
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+    /* decrease the blur and y access to make it look closer to the user  */
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+  &::after {
+    content: "";
+    /* alsways needed and can be empty when using after  */
+    display: inline-block;
+    /* also need the display property */
+    height: 100%;
+    width: 100%;
+    /* treated like a child so making it 100% copies the button */
+    border-radius: 10rem;
+    /* to copy the element; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /* now hidden because z index starts at 0 */
+    transition: all 0.4s;
+    /* ohhhh this is what actually makes it transition over time and not immediatly and all is selecting all transfroms */
+  }
+
+  &--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    animation-fill-mode: backwards;
+  }
+}
+
+.btn-text {
+  &:link,
+  &:visited {
+    font-size: $default-font-size;
+    color: $color-primary;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid $color-primary;
+    padding: 3px;
+    transition:(all, .2s)
+  }
+
+  &:hover {
+    background-color: $color-primary;
+    color: $color-white;
+    box-shadow: 0 1rem 2rem rgba($color-black, .15);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    box-shadow: 0 .5rem 2rem rgba($color-black, .15);
+    transform: (translateY(0))
+  }
+}

@@ -1,0 +1,20 @@
+*,
+/* now all elements will get these values, without these psudo classes it will get wonky. */
+
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  /* to make sure that padding and border are included in the elements height and width */
+}
+html {
+  /* font-size: 10px; */
+  /* root font-size to inform rem */
+  font-size: 62.5%;
+  /* takes the standard 16 and makes it 10px while still allowing visually impaired users to change font size. */
+}
+body {
+  box-sizing: border-box;
+  /* as an inherited setting it is easier to manipulate the value in other elements */
+}

@@ -1,0 +1,28 @@
+div {
+  border: 3px solid #4caf50;
+  padding: 5px;
+}
+
+img {
+  height: 100px;
+  width: 100px;
+  float: right;
+  border: 3px solid red;
+}
+
+/* p {
+    border: 3px solid rgb(0, 0, 0);
+    padding: 5px;
+} */
+
+.clearfix {
+  overflow: auto;
+}
+
+/* .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  } */
+
+/* more modern and safer */

@@ -1,0 +1,316 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  /* to make sure that padding and border are included in the elements height and width */ }
+
+html {
+  /* font-size: 10px; */
+  /* root font-size to inform rem */
+  font-size: 62.5%;
+  /* takes the standard 16 and makes it 10px while still allowing visually impaired users to change font size. */ }
+
+body {
+  box-sizing: border-box;
+  /* as an inherited setting it is easier to manipulate the value in other elements */ }
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); }
+  /* negative value moves to the left and postive values move animation to the right */
+  80% {
+    transform: translateX(1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(10rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /* font-size: 16px; */
+  line-height: 1.7;
+  color: #777;
+  padding: 3rem;
+  /* as an inherited setting it is easier to manipulate the value in other elements */ }
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  /* hack to stop shakyness in animation */
+  margin-bottom: 6rem;
+  /* creates white space below text and button, always use margin for white space */ }
+  .heading-primary--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    /*
+            https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function
+            here every parameter is written out below it can be done all in one animationfield
+            animation-delay: 3s;
+            animation-iteration-count: 3;
+            */ }
+  .heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    animation: moveInRight 1s ease-out; }
+
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  background-image: linear-gradient(to right, #55c57a, #28b485);
+  display: inline-block;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 0.2rem;
+  transition: all 0.2s; }
+  .heading-secondary:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2); }
+
+.heading-tertiary {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase; }
+
+.paragraph {
+  font-size: 1.6rem; }
+  .paragraph:not(:last-child) {
+    margin-bottom: 3rem; }
+
+.u-center-text {
+  text-align: center; }
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem; }
+
+.u-margin-bottom-medium {
+  margin-bottom: 6rem; }
+
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem; }
+
+.btn:link, .btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  /* this sets top and botteom and then left and right */
+  display: inline-block;
+  /* since anchor is an inlince text element in order to add padding or margine we need to make it inline-block */
+  border-radius: 20rem;
+  transition: all, 0.2s;
+  /* allows us to change the time on all child transform elements, must be on the INTITAL STATE.  This could also be broken into different params like animation */
+  position: relative;
+  /* for the after sudo class on the button
+      animation: moveInBottom .4s ease-in; */
+  /* possible solution but very impractical because it will apply this animation to all buttons */
+  font-size: 1.6rem; }
+
+.btn:hover {
+  transform: translateY(-0.3rem);
+  /* negative will move an element up */
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  /* x,y,blur, suttle shadow with black and 20 percent opacity */ }
+  .btn:hover::after {
+    /* only after when on hover state */
+    /* transform: scale(1.5); */
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+    /* creates the fade effect */ }
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  /* decrease the blur and y access to make it look closer to the user  */ }
+
+.btn--white {
+  background-color: #fff;
+  color: #777; }
+  .btn--white::after {
+    background-color: #fff; }
+
+.btn::after {
+  content: "";
+  /* alsways needed and can be empty when using after  */
+  display: inline-block;
+  /* also need the display property */
+  height: 100%;
+  width: 100%;
+  /* treated like a child so making it 100% copies the button */
+  border-radius: 10rem;
+  /* to copy the element; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  /* now hidden because z index starts at 0 */
+  transition: all 0.4s;
+  /* ohhhh this is what actually makes it transition over time and not immediatly and all is selecting all transfroms */ }
+
+.btn--animated {
+  animation: moveInBottom 0.5s ease-out 0.75s;
+  animation-fill-mode: backwards; }
+
+.btn-text:link, .btn-text:visited {
+  font-size: 1.6rem;
+  color: #7ed56f;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid #7ed56f;
+  padding: 3px;
+  transition: all, 0.2s; }
+
+.btn-text:hover {
+  background-color: #7ed56f;
+  color: #fff;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px); }
+
+.btn-text:active {
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.15);
+  transform: translateY(0); }
+
+.composition {
+  position: relative; }
+  .composition__photo {
+    width: 55%;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+    border-radius: 2px;
+    position: absolute;
+    z-index: 10;
+    transition: all, 0.2s;
+    outline-offset: 2rem; }
+    .composition__photo--p1 {
+      left: 0;
+      top: -2rem; }
+    .composition__photo--p2 {
+      right: 0;
+      top: 2rem; }
+    .composition__photo--p3 {
+      left: 20%;
+      top: 10rem; }
+    .composition__photo:hover {
+      outline: 1.5rem solid #7ed56f;
+      transform: scale(1.05) translateY(-0.5rem);
+      box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.5);
+      z-index: 20; }
+  .composition:hover .composition__photo:not(:hover) {
+    transform: scale(0.95); }
+
+.header {
+  height: 95vh;
+  background-image: linear-gradient(to right, rgba(85, 197, 122, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
+  /* first image is on top, can go in any direction for ex. right, bottom, opacity to see through*/
+  background-size: cover;
+  /* covers width of viewport */
+  background-position: top;
+  /* as the viewport changes the image will stick to the top.  Can also be set to bottom and center. */
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+  /* will tell you different shapes https://bennettfeely.com/clippy/ */
+  position: relative;
+  /* parent element set to relative will position the element. */ }
+  .header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem; }
+  .header__logo {
+    height: 3.5rem; }
+  .header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* using transform elements are no longer in position absolute and you can adjust elements back to their center */
+    text-align: center;
+    /* we use this to align button below that is inline block (because inline-block can be manipulated like inline elements).  Could postion absolute and transform but it is over kill.  
+           */ }
+
+.row {
+  max-width: 114rem;
+  margin: 0 auto; }
+  .row:not(:last-child) {
+    margin-bottom: 8rem; }
+  .row::after {
+    content: "";
+    display: table;
+    clear: both; }
+  .row [class^="col-"] {
+    float: left; }
+    .row [class^="col-"]:not(:last-child) {
+      margin-right: 6rem; }
+  .row .col-1-of-2 {
+    width: calc((100% - 6rem) / 2);
+    float: left; }
+    .row .col-1-of-2:not(:last-child) {
+      margin-right: 6rem; }
+  .row .col-1-of-3 {
+    width: calc((100% - 2 * 6rem) / 3); }
+  .row .col-2-of-3 {
+    width: calc(2 * ((100% - 2 * 6rem) / 3) + 6rem); }
+  .row .col-1-of-4 {
+    width: calc((100% - 3 * 6rem) / 4); }
+  .row .col-2-of-4 {
+    width: calc(2 * ((100% - 3 * 6rem) / 4) + 6rem); }
+  .row .col-3-of-4 {
+    width: calc(3 * ((100% - 3 * 6rem) / 4) +  2 * 6rem); }
+
+.section-about {
+  background-color: #f7f7f7;
+  padding: 25rem 0;
+  margin-top: -20vh; }
+
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+
+hot keys:
+
+select multiple units: cmd + d
+options click to drop multiple cursors
+
+theory lectures:
+
+how are units converted from relative to absolute (px):
+FONTS: if child font-size is set to 150% parent element is 16px (default font size) then child will be 24px.
+LENGTH: if child is set to 10% padding and parent is width of 1000px then padding will be 100px
+EM Font: if child is 3em and parent element is 24px then the child will be 72px through inheritence.
+EN Lengths: in lenvgths em doesn't look at the parent, but the CURRENT ELEMENT. If current element is 24px then 2 em will be 48px.
+REM: always uses the root for both length and font sizes. So whatever the root font size is rem will multiply by 10, if root is 16px and rem is 10 then you have 160px
+VH: 1vh is 1% of viewport height so 90vh is 90% of viewport height. browswer knows this. good for hero sections.
+VW: 1vw is 1% of viewport width so 90vh is 90% of viewport width. browser knows this. good for hero sections.
+
+(line height will be deterimined )  margin padding not inherited, font-size, line-height are inherited if not set to a value.  Always set to computed values.
+inheritence and initial are keywords to change inheritence
+*/
